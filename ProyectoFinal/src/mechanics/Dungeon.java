@@ -1,6 +1,6 @@
 package mechanics;
 
-public class Mazmorra {
+public class Dungeon {
 
 
 

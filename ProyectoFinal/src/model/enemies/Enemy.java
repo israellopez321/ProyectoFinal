@@ -1,4 +1,4 @@
-package entities;
+package model.enemies;
 
 public class Enemy {
 

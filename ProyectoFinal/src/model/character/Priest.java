@@ -1,4 +1,4 @@
-package entities;
+package model.character;
 
 public class Priest {
 
