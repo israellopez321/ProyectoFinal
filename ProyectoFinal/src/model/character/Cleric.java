@@ -1,6 +1,6 @@
 package model.character;
 
-public class Priest {
+public class Cleric {
 
 	
 }
