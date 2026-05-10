@@ -17,6 +17,7 @@ public abstract class Character {
 	protected int attack;
 	protected int defense;
 	protected int speed;
+	protected int level;
 	
 	/**
 	 * Constructor Initializes the character with the given parameters.
@@ -28,8 +29,9 @@ public abstract class Character {
 	 * @param attack
 	 * @param defense
 	 * @param speed
+	 * @param level
 	 */
-	public Character(String name, int hp, int hpMax, int mana, int manaMax, int attack, int defense, int speed) {
+	public Character(String name, int hp, int hpMax, int mana, int manaMax, int attack, int defense, int speed, int level) {
 		super();
 		this.name = name;
 		this.hp = hp;
@@ -39,76 +41,32 @@ public abstract class Character {
 		this.attack = attack;
 		this.defense = defense;
 		this.speed = speed;
+		this.level = level;
 	}
 
-	//GETTERS AND SETTERS
-	
+	// Getters and setters for the character attributes
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	public int getHp() {
 		return hp;
 	}
-
+	
 	public void setHp(int hp) {
 		this.hp = hp;
 	}
-
-	public int getHpMax() {
-		return hpMax;
-	}
-
-	public void setHpMax(int hpMax) {
-		this.hpMax = hpMax;
-	}
-
-	public int getMana() {
-		return mana;
-	}
-
-	public void setMana(int mana) {
-		this.mana = mana;
-	}
-
-	public int getManaMax() {
-		return manaMax;
-	}
-
-	public void setManaMax(int manaMax) {
-		this.manaMax = manaMax;
-	}
-
-	public int getAttack() {
-		return attack;
-	}
-
-	public void setAttack(int attack) {
-		this.attack = attack;
-	}
-
-	public int getDefense() {
-		return defense;
-	}
-
-	public void setDefense(int defense) {
-		this.defense = defense;
-	}
-
-	public int getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	
+	
+	public boolean isAlive() {
+		return hp > 0;
 	}
 	
-	publlic void 
 	
+	
+	
+	
+
 	
 	
 
