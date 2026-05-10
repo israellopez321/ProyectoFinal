@@ -1,6 +1,6 @@
 package model.character;
 
-public class Cleric {
+public class Cleric extends Character {
 
 	
 }

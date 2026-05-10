@@ -1,6 +1,6 @@
 package model.enemies;
 
-public class Enemy {
+public abstract class Enemy {
 
 	
 
