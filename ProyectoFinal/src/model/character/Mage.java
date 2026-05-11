@@ -9,7 +9,7 @@ public class Mage extends Character implements Combatant {
 	 * @param name
 	 */
 	public Mage(String name) {
-		super(name,60, 60, 30, 30, 10, 10, 10);
+		super(name,60, 60, 30, 30, 12, 4, 10);
 	}
 
 	@Override

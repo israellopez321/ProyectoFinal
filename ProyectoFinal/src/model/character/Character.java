@@ -136,7 +136,6 @@ public abstract class Character implements Combatant {
 		if (hp <= 0) {
 			System.out.println(name + " ha muerto");; // Ensure hp doesn't go below 0
 		}
-		
 		return hp > 0;
 	}
 	

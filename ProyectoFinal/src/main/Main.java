@@ -3,13 +3,14 @@ package main;
 import model.character.Warrior;
 import model.enemies.Goblin;
 import model.character.Character;
+import model.character.Mage;
 import model.enemies.Enemy;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		
-		  Character p = new Warrior("Ares");
+		  Character p = new Mage("Ares");
 		  Enemy e = new Goblin("GoblinW");
 		  while (p.isAlive() && e.isAlive()) {
 		      int d = p.attack(e);
