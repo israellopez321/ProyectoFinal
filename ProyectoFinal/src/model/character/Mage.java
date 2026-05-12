@@ -26,11 +26,15 @@ public class Mage extends Character implements Combatant {
 	}
 	
 	@Override
-	public void useSkill(Combatant target) {
-		if (mana >= 15) {
-			mana -= 15;
-			attack += 7;
+	public int useSkill(Combatant target) {
+		if (mana < 15) {
+			return -1;
 		}
+
+		mana -= 15;
+		int damage = attack + 7; // magic burst
+		int applied = target.takesDamage(damage);
+		return applied;
 	}
 	
 	

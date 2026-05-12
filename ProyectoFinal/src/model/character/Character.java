@@ -133,10 +133,6 @@ public abstract class Character implements Combatant {
 	 * Method to check if he is alive
 	 */
 	public boolean isAlive() {
-		
-		if (hp <= 0) {
-			System.out.println(name + " ha muerto");; // Ensure hp doesn't go below 0
-		}
 		return hp > 0;
 	}
 	
@@ -144,7 +140,6 @@ public abstract class Character implements Combatant {
 	public int attack(Combatant target) {
 		
 		int damageTaken = target.takesDamage(this.attack);
-		System.out.println(name + " hace " + damageTaken + " de daño");
 		return damageTaken;
 	}
 	
@@ -160,9 +155,9 @@ public abstract class Character implements Combatant {
 		
 		int damageTaken = Math.max(0, damage - defense);
 		
-		this.hp = Math.max(0, this.hp - damageTaken);
-		
 		damageTaken = isDefending ? damageTaken / 2 : damageTaken;
+		
+		this.hp = Math.max(0, this.hp - damageTaken);
 		
 		isDefending = false;
 		
@@ -181,7 +176,8 @@ public abstract class Character implements Combatant {
 		}
 	}
 	
-	public abstract void useSkill();
+	@Override
+	public abstract int useSkill(Combatant target);
 	
 	public abstract void levelUp();
 

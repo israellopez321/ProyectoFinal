@@ -145,7 +145,6 @@ public abstract class Enemy implements Combatant {
 		@Override
 		public boolean isAlive() {
 			if (hp <= 0) {
-				System.out.println(name + " ha muerto");; // Ensure hp doesn't go below 0
 			}
 			
 			return hp > 0;
@@ -161,7 +160,6 @@ public abstract class Enemy implements Combatant {
 		
 		@Override
 		public void defend() {
-			System.out.println(name + " se defiende.");
 			isDefending = true;
 			
 		}
