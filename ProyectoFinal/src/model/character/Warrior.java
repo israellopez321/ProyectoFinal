@@ -27,11 +27,19 @@ public class Warrior extends Character implements Combatant {
 	}
 	
 	@Override
-	public void useSkill(Combatant target) {
+	public int useSkill(Combatant target) {
 		if (mana >= 10) {
 			mana -= 10;
 			attack += 5; // Temporary boost for the next attack
 		}
+		return attack;
+	}
+
+
+	@Override
+	public void useSkill() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

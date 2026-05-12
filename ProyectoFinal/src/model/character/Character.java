@@ -22,6 +22,7 @@ public abstract class Character implements Combatant {
 	protected int level;
 	protected int experience;
 	protected int experienceToNextLevel;
+	protected boolean isDefending = false;
 	
 	/**
 	 * Constructor Initializes the character with the given parameters.
@@ -142,16 +143,30 @@ public abstract class Character implements Combatant {
 	@Override
 	public int attack(Combatant target) {
 		
-		//Futura implementación de habilidades
-		
-		return target.defend(this.attack);
+		int damageTaken = target.takesDamage(this.attack);
+		System.out.println(name + " hace " + damageTaken + " de daño");
+		return damageTaken;
 	}
 	
 	@Override
-	public int defend(int incomingDamage) {
-		int damageReceived = Math.max(0, incomingDamage - this.defense);
-		this.hp = Math.max(0, this.hp - damageReceived);
-		return damageReceived;
+	public void defend() {
+		
+		isDefending = true;
+		
+	}
+	
+	@Override
+	public int takesDamage(int damage) {
+		
+		int damageTaken = Math.max(0, damage - defense);
+		
+		this.hp = Math.max(0, this.hp - damageTaken);
+		
+		damageTaken = isDefending ? damageTaken / 2 : damageTaken;
+		
+		isDefending = false;
+		
+		return damageTaken;
 	}
 	
 	/**
@@ -165,6 +180,8 @@ public abstract class Character implements Combatant {
 			levelUp();
 		}
 	}
+	
+	public abstract void useSkill();
 	
 	public abstract void levelUp();
 
