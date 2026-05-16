@@ -5,6 +5,9 @@ import model.enemies.Enemy;
 import model.interfaces.Combatant;
 import model.character.Character;
 
+/**
+ * The TurnManager class manages the turn order of combatants in a turn-based combat system. It keeps track of allies, enemies, and the overall turn order based on their speed. It provides methods to add and remove combatants, determine the next combatant to take a turn, and check if the combat is over.
+ */
 public class TurnManager {
 
 	private ArrayList<Character> allies;
@@ -18,8 +21,20 @@ public class TurnManager {
 	 * @param enemies
 	 */
 	public TurnManager(ArrayList<Character> allies, ArrayList<Enemy> enemies) {
-		if(allies != null)this.allies = allies;
-		if(enemies != null)this.enemies = enemies;
+		ArrayList<Character> ally = new ArrayList<>();
+		ArrayList<Enemy> enemy = new ArrayList<>();
+		
+		if(allies != null) {
+			this.allies = allies;
+		} else {
+			this.allies = ally;
+		}
+		
+		if(enemies != null) {
+			this.enemies = enemies;
+		}else {
+			this.enemies = enemy;
+		}
 		buildTurnOrder();
 	}
 	
@@ -64,7 +79,9 @@ public class TurnManager {
 		turnOrder = new ArrayList<Combatant>();
 		turnOrder.addAll(allies);
 		turnOrder.addAll(enemies);
+		turnOrder.removeIf(combatant -> !combatant.isAlive());
 		turnOrder.sort((a, b) -> Integer.compare(b.getSpeed(), a.getSpeed()));
+		turnIndex = 0;
 	}
 	
 	/**
@@ -109,11 +126,54 @@ public class TurnManager {
 		}
 	}
 	
+	/**
+	 * Removes all dead combatants from the turn order and returns the next combatant to take a turn. If the turn order is empty after removing dead combatants, it returns null.
+	 * @return the next combatant to take a turn, or null if the turn order is empty after removing dead combatants.
+	 */
+	public Combatant removeDead() {
+		
+		if (turnOrder == null || turnOrder.isEmpty()) {
+			buildTurnOrder();
+		}
+			
+		turnOrder.removeIf(combatant -> !combatant.isAlive());
+		
+		if(turnOrder.isEmpty()) {
+			return null;
+		}
+		
+		if(turnIndex < 0 || turnIndex >= turnOrder.size()) {
+			turnIndex = 0;
+		}
+		
+		return turnOrder.get(turnIndex);
+	}
 	
+	/**
+	 * Returns the next combatant to take a turn, removing any dead combatants from the turn order. If the turn order is empty after removing dead combatants, it returns null.
+	 * @return the next combatant to take a turn, or null if the turn order is empty after removing dead combatants.
+	 */
+	public Combatant nextCombatant() {
+		
+		Combatant current = removeDead();
+		
+		if(current != null) {
+			
+			if(!turnOrder.isEmpty()) turnIndex++;
+		}
+		return current;
+	}
 	
-	
-	
-	
+	/**
+	 * Checks if the combat is over by verifying if all allies or all enemies are dead. If either all allies are dead or all enemies are dead, it returns true, indicating that the combat is over. Otherwise, it returns false.
+	 * @return true if the combat is over (all allies or all enemies are dead), false otherwise.
+	 */
+	public boolean isCombatOver() {
+		boolean allyAlive = allies.stream().anyMatch(Combatant -> Combatant.isAlive());
+		boolean enemyAlive = enemies.stream().anyMatch(Combatant -> Combatant.isAlive());
+				
+		return !(allyAlive && enemyAlive);			
+	}
 	
 	
 	

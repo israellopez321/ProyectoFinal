@@ -37,5 +37,4 @@ public class Mage extends Character implements Combatant {
 		return applied;
 	}
 	
-	
 }
