@@ -6,8 +6,11 @@ import java.util.Random;
 
 import model.character.Warrior;
 import model.character.Mage;
+import model.character.Paladin;
+import model.character.Archer;
 import model.character.Character;
 import model.enemies.Goblin;
+import model.enemies.Orc;
 import model.enemies.Enemy;
 import model.interfaces.Combatant;
 import mechanics.TurnManager;
@@ -17,17 +20,13 @@ public class Main {
         // Crear aliados
         ArrayList<Character> allies = new ArrayList<>();
         allies.add(new Warrior("Ares"));   // speed 6
-        allies.add(new Mage("Merlin"));    // speed 10
+        allies.add(new Archer("Merlin"));    // speed 10
+        allies.add(new Paladin("Athena"));      // speed 8
 
         // Crear enemigos
         ArrayList<Enemy> enemies = new ArrayList<>();
-        enemies.add(new Goblin("G1"));     // speed 20
-        enemies.add(new Goblin("G2"));
-        enemies.add(new Goblin("G4"));
-        enemies.add(new Goblin("G3"));
-        enemies.add(new Goblin("G5"));
-        enemies.add(new Goblin("G6"));
-        enemies.add(new Goblin("G7"));
+        enemies.add(new Goblin("G1", 2));     // speed 20
+        enemies.add(new Orc("ORC1", 1));
 
         // Crear TurnManager
         TurnManager tm = new TurnManager(allies, enemies);

@@ -4,8 +4,8 @@ import model.interfaces.Combatant;
 
 public class Goblin extends Enemy implements Combatant {	
 	
-	public Goblin(String name) {
-		super(name, 30, 30, 10 ,10, 10, 20, 3, 8);
+	public Goblin(String name, int level) {
+		super(name, 20 + (level * 4), 4 + (level * 1), 5 + (level * 2), 2 + level, 7 + (level * 2), 5 + level, 6 + (level * 2));
 	}
 	
 	@Override

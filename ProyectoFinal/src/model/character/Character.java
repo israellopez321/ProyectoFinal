@@ -17,6 +17,8 @@ public abstract class Character implements Combatant {
 	protected int mana;
 	protected int manaMax;
 	protected int attack;
+	protected int dexterity;
+	protected int intelligence;
 	protected int defense;
 	protected int speed;
 	protected int level;
@@ -35,13 +37,15 @@ public abstract class Character implements Combatant {
 	 * @param defense
 	 * @param speedS
 	 */
-	public Character(String name, int hp, int hpMax, int mana, int manaMax, int attack, int defense, int speed) {
+	public Character(String name, int hp, int mana, int attack, int dexterity, int intelligence , int defense, int speed) {
 		this.name = name;
 		this.hp = hp;
-		this.hpMax = hpMax;
+		this.hpMax = hp;
 		this.mana = mana;
-		this.manaMax = manaMax;
+		this.manaMax = mana;
 		this.attack = attack;
+		this.dexterity = dexterity;
+		this.intelligence = intelligence;
 		this.defense = defense;
 		this.speed = speed;
 		this.level = 1;
@@ -202,7 +206,7 @@ public abstract class Character implements Combatant {
 	@Override
 	public String toString() {
 		return "Character | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
-				+ " |  attack: " + attack + "| defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
 				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
 	}
 	

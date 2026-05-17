@@ -9,20 +9,21 @@ public class Warrior extends Character implements Combatant {
 	 * @param name
 	 */
 	public Warrior(String name) {
-		super(name, 100, 100, 30, 30, 18, 8, 6);
+		super(name, 30, 5, 8, 4, 2 , 7, 3);
 	}
 
 	@Override
 	public void levelUp() {
 		level++;
-		experience = 0;
 		experienceToNextLevel += 50;
-		hpMax += 20;
-		hp = hpMax;
-		manaMax += 5;
-		mana = manaMax;
-		attack += 4;
-		defense += 3;
+		hpMax += 7;
+		hp += 7;
+		manaMax += 1;
+		mana += 1;
+		attack += 2;
+		dexterity += 1;
+		intelligence += 0;
+		defense += 2;
 		speed += 1;
 	}
 	

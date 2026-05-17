@@ -20,15 +20,17 @@ public abstract class Enemy implements Combatant {
 	    protected int goldReward;
 	    protected int expReward;
 	    protected int mana;
+	    protected int manaMax;
 	    protected boolean isDefending;
 	    
 	    
-		public Enemy(String name, int hp, int hpMax,int mana, int attack, int defense, int speed, int goldReward,
+		public Enemy(String name, int hp ,int mana, int attack, int defense, int speed, int goldReward,
 				int expReward) {
 			this.name = name;
 			this.hp = hp;
-			this.hpMax = hpMax;
+			this.hpMax = hp;
 			this.mana = mana;
+			this.manaMax = mana;
 			this.attack = attack;
 			this.defense = defense;
 			this.speed = speed;
