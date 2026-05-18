@@ -23,4 +23,10 @@ public class Orc extends Enemy{
 		return -1;		
 	}
 	
+	@Override
+	public String toString() {
+		return "Orc | name:" + name + " | hp: " + hp + "/" + hpMax + " | attack: " + attack + " | defense: "
+				+ defense + "| speed: " + speed + "|";
+	}
+	
 }

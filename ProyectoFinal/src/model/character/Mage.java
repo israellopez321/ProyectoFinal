@@ -37,4 +37,11 @@ public class Mage extends Character implements Combatant {
 		return applied;
 	}
 	
+	@Override
+	public String toString() {
+			return "Mage | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
+	
 }

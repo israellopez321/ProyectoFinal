@@ -23,7 +23,11 @@ public class Goblin extends Enemy implements Combatant {
 		return -1;		
 	}
 
-
+	@Override
+	public String toString() {
+		return "Goblin | name:" + name + " | hp: " + hp + "/" + hpMax + " | attack: " + attack + " | defense: "
+				+ defense + "| speed: " + speed + "|";
+	}
 	
 	
 }

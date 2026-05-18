@@ -34,5 +34,12 @@ public class Paladin extends Character {
 		int applied = target.takesDamage(damage);
 		return applied;
 	}
-
+	
+	@Override
+	public String toString() {
+			return "Paladin | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
+	
 }

@@ -37,4 +37,12 @@ public class Cleric extends Character {
 		}
 		return healAmount;
 	}
+	
+	@Override
+	public String toString() {
+			return "Cleric | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
+	
 }
