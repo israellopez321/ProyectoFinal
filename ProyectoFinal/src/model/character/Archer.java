@@ -27,16 +27,5 @@ public class Archer extends Character {
 		speed += 2;
 	}
 
-	@Override
-	public int useSkill(Combatant target) {
-		if (mana < 8) {
-			return -1;
-		}
-
-		mana -= 8;
-		int damage = attack + 6; // precise shot
-		int applied = target.takesDamage(damage);
-		return applied;
-	}
 	
 }

@@ -23,16 +23,5 @@ public class Paladin extends Character {
 		speed += 0;
 	}
 	
-	@Override
-	public int useSkill(Combatant target) {
-		if (mana < 12) {
-			return -1;
-		}
-
-		mana -= 12;
-		int damage = attack + 5; // holy strike
-		int applied = target.takesDamage(damage);
-		return applied;
-	}
 
 }

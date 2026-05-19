@@ -1,7 +1,9 @@
 package model.character;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
+import mechanics.skills.Skill;
 import model.interfaces.Combatant;
 
 /**
@@ -21,10 +23,11 @@ public abstract class Character implements Combatant {
 	protected int intelligence;
 	protected int defense;
 	protected int speed;
-	protected int level;
+	public int level;
 	protected int experience;
 	protected int experienceToNextLevel;
 	protected boolean isDefending = false;
+	protected ArrayList<Skill> skills = new ArrayList<>();
 	
 	/**
 	 * Constructor Initializes the character with the given parameters.
@@ -104,6 +107,14 @@ public abstract class Character implements Combatant {
 		this.attack = attack;
 	}
 	
+	public int getDexterity() {
+		return dexterity;
+	}
+	
+	public int getIntelligence() {
+		return intelligence;
+	}
+	
 	@Override
 	public int getDefense() {
 		return defense;
@@ -154,6 +165,16 @@ public abstract class Character implements Combatant {
 		
 	}
 	
+	/**
+	 * Method to check if the character has a skill with the given id
+	 * @param id
+	 * @return
+	 */
+	public boolean hasSkill(String id) {
+	    return skills.stream().anyMatch(s -> s.getId().equals(id));
+	}
+
+	
 	@Override
 	public int takesDamage(int damage) {
 		
@@ -168,6 +189,14 @@ public abstract class Character implements Combatant {
 		return damageTaken;
 	}
 	
+	@Override
+	public int takesHealing(int healing) {
+		int actualHealing = Math.min(healing, hpMax - hp);
+		this.hp += actualHealing;
+		return actualHealing;
+	}
+	
+	
 	/**
 	 * Method to gain experience and handle level up if experience exceeds the threshold.
 	 * @param exp
@@ -180,9 +209,15 @@ public abstract class Character implements Combatant {
 		}
 	}
 	
-	@Override
-	public abstract int useSkill(Combatant target);
+	/**
+	 * Abstract method to learn a new skill. Each character class learns skills differently
+	 * @param skill
+	 */
+	public abstract void learnSkill();
 	
+	/**
+	 * Abstract method to handle leveling up. Each character class upgrades its attributes differently when leveling up.
+	 */
 	public abstract void levelUp();
 
 	@Override
@@ -209,6 +244,8 @@ public abstract class Character implements Combatant {
 				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
 				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
 	}
+	
+	
 	
 	
 	

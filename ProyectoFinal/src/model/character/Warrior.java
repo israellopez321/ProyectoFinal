@@ -27,17 +27,6 @@ public class Warrior extends Character implements Combatant {
 		speed += 1;
 	}
 	
-	@Override
-	public int useSkill(Combatant target) {
-		if (mana < 10) {
-			return -1;
-		}
-
-		mana -= 10;
-		int damage = attack + 5; // stronger strike
-		int takenDamage = target.takesDamage(damage);
-		return takenDamage;
-	}
 
 
 	// removed old void useSkill() - Character defines int useSkill(Combatant)

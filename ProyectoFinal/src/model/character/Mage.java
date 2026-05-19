@@ -1,5 +1,6 @@
 package model.character;
 
+import mechanics.skills.SkillRegistry;
 import model.interfaces.Combatant;
 
 public class Mage extends Character implements Combatant {
@@ -26,15 +27,13 @@ public class Mage extends Character implements Combatant {
 	}
 	
 	@Override
-	public int useSkill(Combatant target) {
-		if (mana < 15) {
-			return -1;
-		}
+	public void learnSkill() {
 
-		mana -= 15;
-		int damage = attack + 7; // magic burst
-		int applied = target.takesDamage(damage);
-		return applied;
+	    if (level >= 2 && !hasSkill("Fireball")) {
+	        skills.add(SkillRegistry.get("Fireball"));
+	    }
+
 	}
+
 	
 }

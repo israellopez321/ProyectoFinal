@@ -23,18 +23,5 @@ public class Cleric extends Character {
 		speed += 1;
 	}
 	
-	@Override
-	public int useSkill(Combatant target) {
-		if (mana < 12) {
-			return -1;
-		}
 
-		mana -= 12;
-		int healAmount = attack + 5; // healing light
-		hp += healAmount;
-		if (hp > hpMax) {
-			hp = hpMax;
-		}
-		return healAmount;
-	}
 }

@@ -18,8 +18,6 @@ public interface Combatant {
 	*/
 	void defend();
 	
-	int useSkill(Combatant target);
-	
 	/**
 	 * Check if the combatant is still alive
 	 * @return
@@ -34,6 +32,8 @@ public interface Combatant {
 	 * @return The real damage received
 	 */
 	public int takesDamage(int damage);
+	
+	public int takesHealing(int healing);
 	
 	int getSpeed();
 	

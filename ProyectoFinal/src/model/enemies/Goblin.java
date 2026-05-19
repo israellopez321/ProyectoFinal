@@ -23,6 +23,12 @@ public class Goblin extends Enemy implements Combatant {
 		return -1;		
 	}
 
+	@Override
+	public int takesHealing(int healing) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	
 	
