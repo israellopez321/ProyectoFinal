@@ -8,7 +8,7 @@ public class SkillHealer extends Skill {
 	private int healAmount;
 	private double modInt;
 	
-	public SkillHealer(String id, String name, String description,String type, int manaCost, int minLevel, int healAmount, double modInt) {
+	public SkillHealer(String id, String name, String description,String type, int minLevel, int manaCost, int healAmount, double modInt) {
 		super(id, name, description, type , manaCost, minLevel);
 		this.healAmount = healAmount;
 		this.modInt = modInt;

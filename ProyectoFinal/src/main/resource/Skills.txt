@@ -1,4 +1,2 @@
 fireball;Fireball;A blazing ball of fire;Damage;2;10;25;0;0;2.5
 heal_light;Light Heal;A gentle healing spell;Heal;5;1;20;1.5
-
-

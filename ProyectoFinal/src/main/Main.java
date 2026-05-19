@@ -1,95 +1,105 @@
 package main;
 
+import mechanics.skills.SkillRegistry;
+import mechanics.skills.Skill;
+import mechanics.skills.SkillDamage;
+import mechanics.TurnManager;
+import model.character.Character;
+import model.character.Mage;
+import model.enemies.Enemy;
+import model.enemies.Goblin;
+import model.interfaces.Combatant;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import model.character.Warrior;
-import model.character.Mage;
-import model.character.Paladin;
-import model.character.Archer;
-import model.character.Character;
-import model.enemies.Goblin;
-import model.enemies.Orc;
-import model.enemies.Enemy;
-import model.interfaces.Combatant;
-import mechanics.TurnManager;
-
 public class Main {
     public static void main(String[] args) {
-        // Crear aliados
+        // 1) Cargar skills
+        SkillRegistry.loadFromFile();
+
+        Mage testMage = new Mage("TestMage");
+        
+        testMage.levelUp(); // para asegurarnos de que aprende Fireball
+        
+        System.out.println(testMage.getSkills()); // para verificar que no tiene habilidades al inicio
+        
+        // 2) Obtener Fireball (por id tal como está en tu archivo); si no existe, crear uno de prueba
+        Skill fire = SkillRegistry.get("Fireball");
+        if (fire == null) {
+            fire = new SkillDamage("Fireball", "Fireball", "Bola de fuego", "Damage",
+                                   10, 2, 30, 0.0, 0.0, 0.6);
+        }
+
+        // 3) Crear combatientes
         ArrayList<Character> allies = new ArrayList<>();
-        allies.add(new Warrior("Ares"));   // speed 6
-        allies.add(new Archer("Merlin"));    // speed 10
-        allies.add(new Paladin("Athena"));      // speed 8
+        Mage mage = new Mage("Gandalf");
+        allies.add(mage);
 
-        // Crear enemigos
         ArrayList<Enemy> enemies = new ArrayList<>();
-        enemies.add(new Goblin("G1", 2));     // speed 20
-        enemies.add(new Orc("ORC1", 1));
+        enemies.add(new Goblin("G1", 1));
 
-        // Crear TurnManager
         TurnManager tm = new TurnManager(allies, enemies);
         Random rnd = new Random();
 
         System.out.println("Orden inicial (descendente por speed):");
-        for (Combatant c : tm.getTurnOrder()) {
-            System.out.println("  - " + c);
-        }
+        for (Combatant c : tm.getTurnOrder()) System.out.println("  - " + c);
 
-        System.out.println("\nComienzo del combate:");
-        // Bucle principal: hasta que isCombatOver() sea true
         int round = 1;
         while (!tm.isCombatOver()) {
             System.out.println("\n--- Ronda " + (round++) + " ---");
             Combatant current = tm.nextCombatant();
+            if (current == null) break;
+            if (!current.isAlive()) continue;
 
-            if (current == null) {
-                System.out.println("No hay combatientes disponibles (turnOrder vacío).");
-                break;
-            }
-
-            // Si current está muerto, lo saltamos (seguridad)
-            if (!current.isAlive()) {
-                System.out.println(current.getName() + " está muerto. Saltando.");
-                continue;
-            }
-
-            // Elegimos lista de objetivos opuestos
             List<Combatant> possibleTargets = new ArrayList<>();
             if (current instanceof Character) {
-                // objetivos = enemigos vivos
                 for (Enemy e : tm.getEnemies()) if (e.isAlive()) possibleTargets.add(e);
             } else {
-                // current es Enemy -> objetivos = aliados vivos
                 for (Character a : tm.getAllies()) if (a.isAlive()) possibleTargets.add(a);
             }
+            if (possibleTargets.isEmpty()) continue;
 
-            if (possibleTargets.isEmpty()) {
-                // quizá acabó el combate justo ahora
-                System.out.println("No hay objetivos vivos para " + current.getName());
-                continue;
-            }
-
-            // Seleccionamos target aleatorio simple
             Combatant target = possibleTargets.get(rnd.nextInt(possibleTargets.size()));
 
-            // Ejecutar ataque (podrías usar useSkill() según la clase)
-            int damage = current.attack(target);
+            // Detalles previos
+            int targetHpBefore = target.getHp();
+            int userManaBefore = (current instanceof Mage) ? ((Mage) current).getMana() : -1;
 
-            System.out.println(current.getName() + " ataca a " + target.getName() + " y hace " + damage + " de daño."
-                    + " (HP restante: " + target.getHp() + ")");
+            if (current instanceof Mage) {
+                Mage m = (Mage) current;
+                if (m.getMana() >= fire.getManaCost()) {
+                    System.out.println(m.getName() + " intenta usar " + fire.getName() + " sobre " + target.getName());
+                    // si es SkillDamage, mostrar estimación basada en atributos
+                    if (fire instanceof SkillDamage) {
+                        int estimated = ((SkillDamage) fire).calculateDamage(m);
+                        System.out.println("  - Estimación de daño (sin defensas): " + estimated);
+                    }
+                    // Ejecutar skill
+                    fire.useSkill(m, target);
 
-            // Si muere, eliminarlo de la lista correspondiente y reconstruir orden
+                    int targetHpAfter = target.getHp();
+                    int actualDamage = Math.max(0, targetHpBefore - targetHpAfter);
+                    System.out.println("  - Daño real aplicado: " + actualDamage);
+                    System.out.println("  - Mana: " + userManaBefore + " -> " + m.getMana() + " (coste " + fire.getManaCost() + ")");
+                } else {
+                    int dmg = m.attack(target);
+                    System.out.println(m.getName() + " no tiene mana suficiente y ataca normalmente, daño: " + dmg);
+                }
+            } else {
+                int dmg = current.attack(target);
+                System.out.println(current.getName() + " ataca a " + target.getName() + " y hace " + dmg + " de daño.");
+            }
+
+            System.out.println("Estado objetivo: " + target.getName() + " HP=" + target.getHp());
+
             if (!target.isAlive()) {
                 System.out.println(target.getName() + " ha muerto.");
-                if (target instanceof Character) {
-                    tm.getAllies().remove((Character) target);
-                } else {
-                    tm.getEnemies().remove((Enemy) target);
-                }
-                tm.buildTurnOrder(); // actualiza turnOrder y resetea turnIndex
-            }        
+                if (target instanceof Character) tm.getAllies().remove((Character) target);
+                else tm.getEnemies().remove((Enemy) target);
+                tm.buildTurnOrder();
+            }
         }
 
         System.out.println("\nCombate finalizado.");

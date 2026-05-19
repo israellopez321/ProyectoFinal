@@ -25,6 +25,8 @@ public class Archer extends Character {
 		intelligence += 1;
 		defense += 1;
 		speed += 2;
+		
+		learnSkill();
 	}
 
 	@Override
@@ -32,6 +34,12 @@ public class Archer extends Character {
 			return "Archer | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
 				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
 				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
+
+	@Override
+	public void learnSkill() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

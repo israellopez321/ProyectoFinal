@@ -140,6 +140,10 @@ public abstract class Character implements Combatant {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	
+	public ArrayList<Skill> getSkills() {
+		return skills;
+	}
 
 	// Implementation of Combatant interface methods
 	

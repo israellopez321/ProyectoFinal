@@ -10,7 +10,7 @@ public class SkillRegistry {
 
 	private static Map<String, Skill> skillMap = new HashMap<>();
 	
-	final static String ARCHIVE = "src/main/resources/skills.txt";
+	final static String ARCHIVE = "src/main/resource/Skills.txt";
 	
 	public static void loadFromFile() {
 	    try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVE))) {
@@ -44,7 +44,7 @@ public class SkillRegistry {
 	                int healAmount = Integer.parseInt(data[6]);
 	                double modInt = Double.parseDouble(data[7]);
 
-	                skillMap.put(id, new SkillHealer(id, name, description, type, mana, level, healAmount, modInt));
+	                skillMap.put(id, new SkillHealer(id, name, description, type, level, mana, healAmount, modInt));
 	            }
 	        }
 	    

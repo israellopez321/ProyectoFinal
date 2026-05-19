@@ -67,6 +67,7 @@ public class SkillDamage extends Skill {
 			return;  
 		}
 		
+		user.setMana(user.getMana() - manaCost);
 		int damage = calculateDamage(user);
 		target.takesDamage(damage);
 	} // 

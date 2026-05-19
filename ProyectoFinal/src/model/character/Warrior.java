@@ -25,8 +25,15 @@ public class Warrior extends Character implements Combatant {
 		intelligence += 0;
 		defense += 2;
 		speed += 1;
+		
+		learnSkill();
 	}
 	
+	@Override
+	public void learnSkill() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public String toString() {
@@ -34,5 +41,7 @@ public class Warrior extends Character implements Combatant {
 				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
 				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
 	}
+
+	
 
 }

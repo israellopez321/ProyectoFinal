@@ -21,18 +21,14 @@ public class Rogue extends Character {
 		intelligence += 1;
 		defense += 1;
 		speed += 2;
+		
+		learnSkill();
 	}
 	
 	@Override
-	public int useSkill(Combatant target) {
-		if (mana < 8) {
-			return -1;
-		}
-
-		mana -= 8;
-		int damage = attack + 6; // backstab
-		int applied = target.takesDamage(damage);
-		return applied;
+	public void learnSkill() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override
@@ -41,5 +37,7 @@ public class Rogue extends Character {
 				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
 				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
 	}
+
+	
 
 }

@@ -24,16 +24,28 @@ public class Mage extends Character implements Combatant {
 		attack += 3;
 		defense += 2;
 		speed += 2;
+		
+		learnSkill();
 	}
 	
 	@Override
 	public void learnSkill() {
 
-	    if (level >= 2 && !hasSkill("Fireball")) {
-	        skills.add(SkillRegistry.get("Fireball"));
+	    if (level >= 2 && !hasSkill("fireball")) {
+	        skills.add(SkillRegistry.get("fireball"));
+	        System.out.println(name + " has learned " + SkillRegistry.get("fireball").getName() + "!");
 	    }
 
 	}
+	
+	
+	@Override
+	public String toString() {
+			return "Mage | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
+
 
 	
 }

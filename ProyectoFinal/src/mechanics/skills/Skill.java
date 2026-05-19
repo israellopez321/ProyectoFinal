@@ -14,6 +14,7 @@ public abstract class Skill {
 	
 	
 	public Skill(String id, String name, String type,  String description, int manaCost, int minLevel) {
+		this.id = id;
 		this.name = name;
 		this.manaCost = manaCost;
 		this.minLevel = minLevel;
