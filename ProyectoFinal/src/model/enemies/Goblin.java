@@ -24,12 +24,19 @@ public class Goblin extends Enemy implements Combatant {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int takesHealing(int healing) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
+=======
+	public String toString() {
+		return "Goblin | name:" + name + " | hp: " + hp + "/" + hpMax + " | attack: " + attack + " | defense: "
+				+ defense + "| speed: " + speed + "|";
+	}
+>>>>>>> branch 'master' of https://github.com/israellopez321/ProyectoFinal.git
 	
 	
 }

@@ -23,4 +23,23 @@ public class Rogue extends Character {
 		speed += 2;
 	}
 	
+	@Override
+	public int useSkill(Combatant target) {
+		if (mana < 8) {
+			return -1;
+		}
+
+		mana -= 8;
+		int damage = attack + 6; // backstab
+		int applied = target.takesDamage(damage);
+		return applied;
+	}
+	
+	@Override
+	public String toString() {
+			return "Rogue | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
+
 }

@@ -27,5 +27,11 @@ public class Archer extends Character {
 		speed += 2;
 	}
 
+	@Override
+	public String toString() {
+			return "Archer | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
 	
 }

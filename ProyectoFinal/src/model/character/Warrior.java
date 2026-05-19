@@ -28,7 +28,11 @@ public class Warrior extends Character implements Combatant {
 	}
 	
 
-
-	// removed old void useSkill() - Character defines int useSkill(Combatant)
+	@Override
+	public String toString() {
+			return "Warrior | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
 
 }

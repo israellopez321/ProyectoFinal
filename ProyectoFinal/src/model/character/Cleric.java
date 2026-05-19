@@ -24,4 +24,23 @@ public class Cleric extends Character {
 	}
 	
 
+<<<<<<< HEAD
+=======
+		mana -= 12;
+		int healAmount = attack + 5; // healing light
+		hp += healAmount;
+		if (hp > hpMax) {
+			hp = hpMax;
+		}
+		return healAmount;
+	}
+	
+	@Override
+	public String toString() {
+			return "Cleric | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
+				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
+				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+	}
+	
+>>>>>>> branch 'master' of https://github.com/israellopez321/ProyectoFinal.git
 }
