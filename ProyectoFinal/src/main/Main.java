@@ -1,8 +1,8 @@
 package main;
 
-import mechanics.skills.SkillRegistry;
 import mechanics.skills.Skill;
 import mechanics.skills.SkillDamage;
+import mechanics.SkillRegistry;
 import mechanics.TurnManager;
 import model.character.Character;
 import model.character.Mage;

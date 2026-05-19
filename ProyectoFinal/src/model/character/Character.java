@@ -28,6 +28,7 @@ public abstract class Character implements Combatant {
 	protected int experienceToNextLevel;
 	protected boolean isDefending = false;
 	protected ArrayList<Skill> skills = new ArrayList<>();
+
 	
 	/**
 	 * Constructor Initializes the character with the given parameters.

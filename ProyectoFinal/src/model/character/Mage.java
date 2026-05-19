@@ -1,6 +1,6 @@
 package model.character;
 
-import mechanics.skills.SkillRegistry;
+import mechanics.SkillRegistry;
 import model.interfaces.Combatant;
 
 public class Mage extends Character implements Combatant {

@@ -1,10 +1,14 @@
-package mechanics.skills;
+package mechanics;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import mechanics.skills.Skill;
+import mechanics.skills.SkillDamage;
+import mechanics.skills.SkillHealer;
 
 public class SkillRegistry {
 
