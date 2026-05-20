@@ -1,4 +1,4 @@
-package mechanics.skills;
+package model.skills;
 
 import model.character.Character;
 import model.interfaces.Combatant;

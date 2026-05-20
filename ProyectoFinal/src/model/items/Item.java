@@ -1,4 +1,4 @@
-package mechanics;
+package model.items;
 
 public class Item {
 	

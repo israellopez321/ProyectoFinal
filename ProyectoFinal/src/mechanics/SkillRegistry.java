@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import mechanics.skills.Skill;
-import mechanics.skills.SkillDamage;
-import mechanics.skills.SkillHealer;
+import model.skills.Skill;
+import model.skills.SkillDamage;
+import model.skills.SkillHealer;
 
 public class SkillRegistry {
 

@@ -3,8 +3,8 @@ package model.character;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import mechanics.skills.Skill;
 import model.interfaces.Combatant;
+import model.skills.Skill;
 
 /**
  * Abstract class representing a character in the game. It contains common attributes and methods for all characters.

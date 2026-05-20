@@ -1,7 +1,5 @@
 package main;
 
-import mechanics.skills.Skill;
-import mechanics.skills.SkillDamage;
 import mechanics.SkillRegistry;
 import mechanics.TurnManager;
 import model.character.Character;
@@ -9,6 +7,8 @@ import model.character.Mage;
 import model.enemies.Enemy;
 import model.enemies.Goblin;
 import model.interfaces.Combatant;
+import model.skills.Skill;
+import model.skills.SkillDamage;
 
 import java.util.ArrayList;
 import java.util.List;
