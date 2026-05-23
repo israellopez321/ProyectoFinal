@@ -45,7 +45,21 @@ private static Map<String, Item> itemMap = new HashMap<>();
 	                int heal = Integer.parseInt(data[6]);
 	                
 
+	             
 	                itemMap.put(id, new HealItem(id, name, description, cost, quantity, type, heal));
+	         
+	            } else if(type.equalsIgnoreCase("Weapon")) {
+	            	
+	            	int damage = Integer.parseInt(data[6]);
+	            	
+	            	itemMap.put(id, new model.items.Weapon(id, name, description, cost, quantity, type, damage));
+	            	
+	            } else if(type.equalsIgnoreCase("Armor")) {
+	            	
+	            	int defense = Integer.parseInt(data[6]);
+	            	
+	            	itemMap.put(id, new model.items.Armor(id, name, description, cost, quantity, type, defense));
+	            	
 	            }
 	        }
 	    

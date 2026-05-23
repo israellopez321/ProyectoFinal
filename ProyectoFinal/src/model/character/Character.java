@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import model.interfaces.Combatant;
+import model.items.Armor;
+import model.items.Weapon;
 import model.skills.Skill;
 
 /**
@@ -28,6 +30,8 @@ public abstract class Character implements Combatant {
 	protected int experienceToNextLevel;
 	protected boolean isDefending = false;
 	protected ArrayList<Skill> skills = new ArrayList<>();
+	protected Weapon Weapon;
+	protected Armor Armor;
 
 	
 	/**
@@ -145,6 +149,22 @@ public abstract class Character implements Combatant {
 	public ArrayList<Skill> getSkills() {
 		return skills;
 	}
+	
+	public void setWeapon(Weapon weapon) {
+		this.Weapon = weapon;
+	}
+	
+	public Weapon getWeapon() {
+		return Weapon;
+	}
+	
+	public void setArmor(Armor armor) {
+		this.Armor = armor;
+	}
+	
+	public Armor getArmor() {
+		return Armor;
+	}
 
 	// Implementation of Combatant interface methods
 	
@@ -159,13 +179,14 @@ public abstract class Character implements Combatant {
 	@Override
 	public int attack(Combatant target) {
 		
-		int damageTaken = target.takesDamage(this.attack);
+		int damage = attack + (Weapon != null ? Weapon.getAttackAmount() : 0);
+		
+		int damageTaken = target.takesDamage(damage);
 		return damageTaken;
 	}
 	
 	@Override
 	public void defend() {
-		
 		isDefending = true;
 		
 	}
@@ -183,7 +204,7 @@ public abstract class Character implements Combatant {
 	@Override
 	public int takesDamage(int damage) {
 		
-		int damageTaken = Math.max(0, damage - defense);
+		int damageTaken = Math.max(0, damage - defense - (Armor != null ? Armor.getDefenseAmount() : 0));
 		
 		damageTaken = isDefending ? damageTaken / 2 : damageTaken;
 		

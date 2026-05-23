@@ -1,0 +1,2 @@
+Sword;Sword;A sharp blade used for combat.;100;1;Weapon;10
+Bow;Bow;A ranged weapon for shooting arrows.;150;1;Weapon;15

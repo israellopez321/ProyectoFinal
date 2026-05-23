@@ -1,6 +1,7 @@
 package model.items;
 
-import model.interfaces.Combatant;
+import model.character.Character;
+
 
 public class DamageItem extends Item{
 
@@ -16,7 +17,7 @@ public class DamageItem extends Item{
 	}
 	
 	@Override
-	public void use(Combatant user) {
+	public void use(Character user) {
 		user.takesDamage(damageAmount);	
 	}
 	

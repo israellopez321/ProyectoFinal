@@ -1,5 +1,8 @@
 package model.interfaces;
 
+import model.items.Armor;
+import model.items.Weapon;
+
 public interface Combatant {
 
 	/**
@@ -33,6 +36,13 @@ public interface Combatant {
 	 */
 	public int takesDamage(int damage);
 	
+	/**
+	 * The combatant takes incoming healing; You must increase it with your defense, 
+	 * upgrade your life points and return the actual healing received.
+	 * 
+	 * @param incomingHealing The healing that the combatant is about to receive before applying defense and hp increase.
+	 * @return The real healing received
+	 */
 	public int takesHealing(int healing);
 	
 	int getSpeed();
