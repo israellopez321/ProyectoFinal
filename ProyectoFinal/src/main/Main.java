@@ -17,7 +17,7 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         // 1) Cargar skills
-        SkillRegistry.loadFromFile();
+        SkillRegistry.loadSkill();
 
         Mage testMage = new Mage("TestMage");
         
