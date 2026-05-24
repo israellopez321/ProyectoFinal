@@ -52,7 +52,8 @@ public class SkillDamage extends Skill {
 	 * @return The total damage to be applied to the target.
 	 */
 	public int calculateDamage(Character user) {
-		double totalDamage = baseDamage;
+		int damageWeapon = (user.getWeapon() != null) ? user.getWeapon().getAttackAmount() : 0; // Get weapon damage if equipped
+		double totalDamage = baseDamage + damageWeapon; // Include weapon damage
 		totalDamage += user.getAttack() * modAtt;
 		totalDamage += user.getDexterity() * modDex;
 		totalDamage += user.getIntelligence() * modInt;
