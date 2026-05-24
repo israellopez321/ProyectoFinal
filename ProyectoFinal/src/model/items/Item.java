@@ -9,16 +9,14 @@ public abstract class Item {
 	protected String description;
 	protected String type; // e.g., "heal", "damage", "buff", etc.
 	protected int cost;
-	protected int quantity; 
 	
 	
-	public Item(String id, String name, String description, int cost, int quantity, String type) {
+	public Item(String id, String name, String description, int cost, String type) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.type = type;
 		this.cost = cost;
-		this.quantity = quantity;
 	}
 	
 	// Getters
@@ -40,10 +38,6 @@ public abstract class Item {
 	
 	public int getCost() {
 		return cost;
-	}
-	
-	public int getQuantity() {
-		return quantity;
 	}
 	
 	/**

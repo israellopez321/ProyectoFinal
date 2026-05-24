@@ -29,36 +29,35 @@ private static Map<String, Item> itemMap = new HashMap<>();
 	            String name = data[1];
 	            String description = data[2];
 	            int cost = Integer.parseInt(data[3]);
-	            int quantity = Integer.parseInt(data[4]);
-	            String type = data[5];
+	            String type = data[4];	
 
 	            if (type.equalsIgnoreCase("Damage")) {
 
-	                int Damage = Integer.parseInt(data[6]);
+	                int Damage = Integer.parseInt(data[5]);
 
 	                itemMap.put(id,
-	                    new DamageItem(id, name, description, cost, quantity, type, Damage));
+	                    new DamageItem(id, name, description, cost, type, Damage));
 	            }
 
 	            else if (type.equalsIgnoreCase("Heal")) {
 
-	                int heal = Integer.parseInt(data[6]);
+	                int heal = Integer.parseInt(data[5]);
 	                
 
 	             
-	                itemMap.put(id, new HealItem(id, name, description, cost, quantity, type, heal));
+	                itemMap.put(id, new HealItem(id, name, description, cost, type, heal));
 	         
 	            } else if(type.equalsIgnoreCase("Weapon")) {
 	            	
-	            	int damage = Integer.parseInt(data[6]);
+	            	int damage = Integer.parseInt(data[5]);
 	            	
-	            	itemMap.put(id, new model.items.Weapon(id, name, description, cost, quantity, type, damage));
+	            	itemMap.put(id, new model.items.Weapon(id, name, description, cost, type, damage));
 	            	
 	            } else if(type.equalsIgnoreCase("Armor")) {
 	            	
-	            	int defense = Integer.parseInt(data[6]);
+	            	int defense = Integer.parseInt(data[5]);
 	            	
-	            	itemMap.put(id, new model.items.Armor(id, name, description, cost, quantity, type, defense));
+	            	itemMap.put(id, new model.items.Armor(id, name, description, cost, type, defense));
 	            	
 	            }
 	        }

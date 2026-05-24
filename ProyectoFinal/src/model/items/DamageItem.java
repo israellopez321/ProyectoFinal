@@ -7,8 +7,8 @@ public class DamageItem extends Item{
 
 	private int damageAmount;
 	
-	public DamageItem(String id, String name, String description,int cost , int quantity, String type, int damageAmount) {
-		super(id, name, description, cost , quantity, type);
+	public DamageItem(String id, String name, String description,int cost , String type, int damageAmount) {
+		super(id, name, description, cost, type);
 		this.damageAmount = damageAmount;
 	}
 

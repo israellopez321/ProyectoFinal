@@ -7,8 +7,8 @@ public class HealItem extends Item{
 
 	private int healAmount;
 	
-	public HealItem(String id, String name, String description, int cost, int quantity, String type, int healAmount) {
-		super(id, name, description, cost , quantity, type);
+	public HealItem(String id, String name, String description, int cost, String type, int healAmount) {
+		super(id, name, description, cost , type);
 		this.healAmount = healAmount;
 	}
 

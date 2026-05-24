@@ -6,8 +6,8 @@ public class Armor extends Item {
 
 	private int defenseAmount;
 	
-	public Armor(String id, String name, String description, int cost, int quantity, String type, int defenseAmount) {
-		super(id, name, description, cost , quantity, type);
+	public Armor(String id, String name, String description, int cost, String type, int defenseAmount) {
+		super(id, name, description, cost , type);
 		this.defenseAmount = defenseAmount;
 	}
 
