@@ -3,8 +3,10 @@ package model.character;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import mechanics.ItemRegistry;
 import model.interfaces.Combatant;
 import model.items.Armor;
+import model.items.Item;
 import model.items.Weapon;
 import model.skills.Skill;
 
@@ -233,6 +235,12 @@ public abstract class Character implements Combatant {
 			this.experience -= this.experienceToNextLevel;
 			levelUp();
 		}
+	}
+	
+	public void equipItemById(String itemId) {
+	    Item item = ItemRegistry.get(itemId);
+	    if (item instanceof Weapon) setWeapon((Weapon) item);
+	    else if (item instanceof Armor) setArmor((Armor) item);
 	}
 	
 	/**

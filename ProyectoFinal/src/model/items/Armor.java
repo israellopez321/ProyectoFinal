@@ -1,6 +1,7 @@
 package model.items;
 
 import model.character.Character;
+import model.interfaces.Combatant;
 
 public class Armor extends Item {
 
@@ -16,8 +17,9 @@ public class Armor extends Item {
 	}
 
 	@Override
-	public void use(Character user) {
-		user.setArmor(this);
+	public void use(Character user, Combatant target) {
+	    user.setArmor(this);
+	    System.out.println(user.getName() + " equips " + name + "!");
 	}
 	
 }

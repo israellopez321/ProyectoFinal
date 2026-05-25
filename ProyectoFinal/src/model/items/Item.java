@@ -1,6 +1,7 @@
 package model.items;
 
 import model.character.Character;
+import model.interfaces.Combatant;
 
 public abstract class Item {
 	
@@ -43,6 +44,6 @@ public abstract class Item {
 	/**
 	 * Abstract method that defines the behavior when using an item.
 	 */
-	public abstract void use(Character user);
+	public abstract void use(Character user, Combatant target);
 
 }

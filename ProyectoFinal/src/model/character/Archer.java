@@ -10,6 +10,8 @@ public class Archer extends Character {
 	 */
 	public Archer(String name) {
 		super(name, 24, 6, 6, 8, 3, 4, 6);
+		
+		
 	}
 	
 	@Override

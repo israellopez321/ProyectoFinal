@@ -6,6 +6,9 @@ public class Cleric extends Character {
 	
 	public Cleric(String name) {
 		super(name, 20, 14, 3, 3, 8, 4, 3);
+		
+		equipItemById("Staff");
+		equipItemById("Robe");
 	}
 	
 	@Override

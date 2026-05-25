@@ -1,6 +1,7 @@
 package model.items;
 
 import model.character.Character;
+import model.interfaces.Combatant;
 
 
 public class HealItem extends Item{
@@ -17,8 +18,9 @@ public class HealItem extends Item{
 	}
 	
 	@Override
-	public void use(Character user) {
-		user.takesHealing(healAmount);	
+	public void use(Character user, Combatant target) {
+	    int healed = user.takesHealing(healAmount);
+	    System.out.println(user.getName() + " uses " + name + " and heals for " + healed + " HP!");
 	}
 	
 	

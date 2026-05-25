@@ -1,2 +1,12 @@
-Sword;Sword;A sharp blade used for combat.;100;Weapon;10
-Bow;Bow;A ranged weapon for shooting arrows.;150;Weapon;15
+Staff;Staff;Apprentice magical staff.;0;Weapon;4
+Robe;Robe;Light apprentice robe.;0;Armor;2
+Sword;Sword;Basic steel sword.;0;Weapon;5
+Chainmail;Chainmail;Light chainmail armor.;0;Armor;4
+Dagger;Dagger;A small stealth dagger.;0;Weapon;3
+Leather;Leather;Light leather armor.;0;Armor;2
+Bow;Bow;Short bow for ranged attacks.;0;Weapon;4
+Plate;Plate;Light paladin armor.;0;Armor;5
+Small_Potion;Small Potion;Restores a small amount of health.;Heal;1;0;10;1
+Medium_Potion;Medium Potion;Restores a moderate amount of health.;Heal;3;0;25;1.5
+Large_Potion;Large Potion;Restores a large amount of health.;Heal;5;0;50;2
+Throwing_Knife;Throwing Knife;A small knife designed for throwing.;0;Damage;10

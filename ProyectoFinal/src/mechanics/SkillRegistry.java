@@ -16,7 +16,7 @@ public class SkillRegistry {
 	
 	final static String ARCHIVE = "src/main/resource/Skills.txt";
 	
-	public static void loadSkill() {
+	public static void loadSkills() {
 	    try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVE))) {
 
 	        String line;

@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.Scanner;
+import model.character.Warrior;
 
 public class MainMenu {
 	
@@ -51,6 +52,41 @@ public class MainMenu {
 		// Lógica para cargar un juego guardado
 		System.out.println("Game loaded!");
 	}
+	
+	public void createCharacter() {
+		System.out.println("Create your character! You can create up to 3 characters ");
+		
+		while (true) {
+			System.out.println("Choose your class:");
+			System.out.println("1. Warrior");
+			System.out.println("2. Mage");
+			System.out.println("3. Rogue");
+			
+			int classOption = sc.nextInt();
+			
+			if (classOption == 1) {
+				System.out.println("You have chosen Warrior!");
+				
+				System.out.println("Introduce the name of your character:");
+				String name = sc.next();
+				
+				Warrior warrior = new Warrior(name);
+				break;
+			} else if (classOption == 2) {
+				System.out.println("You have chosen Mage!");
+				break;
+			} else if (classOption == 3) {
+				System.out.println("You have chosen Rogue!");
+				break;
+			} else {
+				System.out.println("Invalid option. Please try again.");
+			}
+		}
+		
+		
+		System.out.println("Character created!");
+	}
+	
 	
 	
 }
