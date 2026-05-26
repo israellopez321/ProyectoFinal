@@ -1,5 +1,7 @@
 package ui;
 
+import java.lang.invoke.MethodHandles.Lookup.ClassOption;
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.character.Warrior;
 
@@ -53,38 +55,38 @@ public class MainMenu {
 		System.out.println("Game loaded!");
 	}
 	
-	public void createCharacter() {
+	public ArrayList<Character> createCharacter() {
 		System.out.println("Create your character! You can create up to 3 characters ");
 		
-		while (true) {
+		ArrayList<Character> allies = new ArrayList<>();
+		
+		while (allies.size() < 3) {
 			System.out.println("Choose your class:");
 			System.out.println("1. Warrior");
 			System.out.println("2. Mage");
 			System.out.println("3. Rogue");
+			System.out.println("4. Cleric");
+			System.out.println("5. Paladin");
+			System.out.println("6. Archer");
 			
+			try {
 			int classOption = sc.nextInt();
-			
-			if (classOption == 1) {
-				System.out.println("You have chosen Warrior!");
-				
-				System.out.println("Introduce the name of your character:");
-				String name = sc.next();
-				
-				Warrior warrior = new Warrior(name);
-				break;
-			} else if (classOption == 2) {
-				System.out.println("You have chosen Mage!");
-				break;
-			} else if (classOption == 3) {
-				System.out.println("You have chosen Rogue!");
-				break;
-			} else {
-				System.out.println("Invalid option. Please try again.");
+			} catch(Exception e){
+				System.out.println("Introduce a whole number. ");
 			}
+			
+			switch(classOption) {
+			
+			
+			
+			
+			}
+			
 		}
-		
-		
+			
 		System.out.println("Character created!");
+	
+		return allies;
 	}
 	
 	
