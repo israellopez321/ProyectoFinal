@@ -3,6 +3,7 @@ package model.inventory;
 import java.util.ArrayList;
 
 import model.items.Item;
+import exceptions.InsufficientStockException;
 
 /**
  * The Inventory class manages a collection of items for a character. 
@@ -36,22 +37,31 @@ public class Inventory {
 	 * Removes one quantity of the specified item from the inventory. If the quantity of the item reaches zero, it is removed from the inventory list.
 	 * @param item The item to be removed from the inventory.
 	 */
-	public void remove(Item item) {
-	    InventorySlot slotToRemove = null;
+	public void remove(Item item) throws InsufficientStockException {
+		InventorySlot slotToRemove = null;
+		boolean found = false;
 
-	    for (InventorySlot slot : items) {
-	        if (slot.getItem().getClass() == item.getClass()) {
-	            slot.remove(1);
-	            if (slot.getQuantity() <= 0) {
-	                slotToRemove = slot;
-	            }
-	            break;
-	        }
-	    }
+		for (InventorySlot slot : items) {
+			if (slot.getItem().getClass() == item.getClass()) {
+				found = true;
+				if (slot.getQuantity() <= 0) {
+					throw new InsufficientStockException("No stock for item: " + item.getName());
+				}
+				slot.remove(1);
+				if (slot.getQuantity() <= 0) {
+					slotToRemove = slot;
+				}
+				break;
+			}
+		}
 
-	    if (slotToRemove != null) {
-	        items.remove(slotToRemove);
-	    }
+		if (!found) {
+			throw new InsufficientStockException("Item not found in inventory: " + item.getName());
+		}
+
+		if (slotToRemove != null) {
+			items.remove(slotToRemove);
+		}
 	}
 
 	// Getter

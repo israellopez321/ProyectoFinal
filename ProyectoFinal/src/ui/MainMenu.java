@@ -15,6 +15,7 @@ import model.character.Rogue;
 import model.character.Warrior;
 import repository.SaveManager;
 import model.inventory.Inventory;
+import exceptions.FullPartyException;
 
 public class MainMenu {
 
@@ -82,7 +83,13 @@ public class MainMenu {
      * and saves the game state.
      */
     public void startNewGame() {
-        party = createCharacter();
+        try {
+            party = createCharacter();
+        } catch (FullPartyException e) {
+            System.out.println("Cannot create character: " + e.getMessage());
+            // proceed with whatever was created before reaching the limit
+        }
+
         currentFloor = 1;
         inventory = new Inventory();
 
@@ -176,7 +183,7 @@ public class MainMenu {
      * Allows the player to create up to 3 characters by selecting a class
      * @return
      */
-    public ArrayList<Character> createCharacter() {
+    public ArrayList<Character> createCharacter() throws FullPartyException {
         System.out.println("Create your character! You can create up to 3 characters ");
 
         ArrayList<Character> allies = new ArrayList<>();
@@ -208,31 +215,37 @@ public class MainMenu {
             switch (classOption) {
 
             case 1:
+                if (allies.size() >= 3) throw new FullPartyException("Cannot add more characters, party is full.");
                 allies.add(new Warrior(name));
                 System.out.println("Warrior " + name + " created!");
                 break;
 
             case 2:
+                if (allies.size() >= 3) throw new FullPartyException("Cannot add more characters, party is full.");
                 allies.add(new Mage(name));
                 System.out.println("Mage " + name + " created!");
                 break;
 
             case 3:
+                if (allies.size() >= 3) throw new FullPartyException("Cannot add more characters, party is full.");
                 allies.add(new Rogue(name));
                 System.out.println("Rogue " + name + " created!");
                 break;
 
             case 4:
+                if (allies.size() >= 3) throw new FullPartyException("Cannot add more characters, party is full.");
                 allies.add(new Cleric(name));
                 System.out.println("Cleric " + name + " created!");
                 break;
 
             case 5:
+                if (allies.size() >= 3) throw new FullPartyException("Cannot add more characters, party is full.");
                 allies.add(new Paladin(name));
                 System.out.println("Paladin " + name + " created!");
                 break;
 
             case 6:
+                if (allies.size() >= 3) throw new FullPartyException("Cannot add more characters, party is full.");
                 allies.add(new Archer(name));
                 System.out.println("Archer " + name + " created!");
                 break;

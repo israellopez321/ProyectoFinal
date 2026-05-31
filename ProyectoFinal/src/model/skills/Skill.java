@@ -66,7 +66,10 @@ public abstract class Skill {
 	 * Executes the skill's effect. This method should be overridden by subclasses 
 	 * to define specific behavior for different types of skills (e.g., damage, healing, buffs).
 	 */
-	public abstract void useSkill(Character user, Combatant target);
+	/**
+	 * Executes the skill's effect. Returns true if the skill was successfully used (e.g., enough mana), false otherwise.
+	 */
+	public abstract boolean useSkill(Character user, Combatant target);
 
 	
 	

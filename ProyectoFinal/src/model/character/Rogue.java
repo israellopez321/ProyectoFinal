@@ -22,51 +22,49 @@ public class Rogue extends Character {
 
 	@Override
 	public void levelUp() {
-		level++;
-		experienceToNextLevel += 50;
-		hpMax += 5;
-		hp += 5;
-		manaMax += 2;
-		mana += 2;
-		attack += 2;
-		dexterity += 3;
-		intelligence += 1;
-		defense += 1;
-		speed += 2;
-		
+		setLevel(getLevel() + 1);
+		setExperienceToNextLevel(getExperienceToNextLevel() + 50);
+		setHpMax(getHpMax() + 5);
+		setHp(getHp() + 5);
+		setManaMax(getManaMax() + 2);
+		setMana(getMana() + 2);
+		setAttack(getAttack() + 2);
+		setDexterity(getDexterity() + 3);
+		setIntelligence(getIntelligence() + 1);
+		setDefense(getDefense() + 1);
+		setSpeed(getSpeed() + 2);
+
 		learnSkill();
 	}
 	
 	@Override
 	public void learnSkill() {
-		
-			if (level >= 2 && !hasSkill("quick_stab")) {
-		        skills.add(SkillRegistry.get("quick_stab"));
-		        System.out.println(name + " has learned " + SkillRegistry.get("quick_stab").getName() + "!");
-		    }
-		    
-		    if (level >= 4 && !hasSkill("poison_dagger")) {
-		        skills.add(SkillRegistry.get("poison_dagger"));
-		        System.out.println(name + " has learned " + SkillRegistry.get("poison_dagger").getName() + "!");
-		    }
+		if (getLevel() >= 2 && !hasSkill("quick_stab")) {
+			getSkills().add(SkillRegistry.get("quick_stab"));
+			System.out.println(getName() + " has learned " + SkillRegistry.get("quick_stab").getName() + "!");
+		}
+
+		if (getLevel() >= 4 && !hasSkill("poison_dagger")) {
+			getSkills().add(SkillRegistry.get("poison_dagger"));
+			System.out.println(getName() + " has learned " + SkillRegistry.get("poison_dagger").getName() + "!");
+		}
 		
 	}
 	
 	@Override
 	public int attack(Combatant target) {
-			
-			int damage = dexterity + (Weapon != null ? Weapon.getAttackAmount() : 0);
-			
-			int damageTaken = target.takesDamage(damage);
-			
-			return damageTaken;
+		int damage = getDexterity() + (getWeapon() != null ? getWeapon().getAttackAmount() : 0);
+
+		int damageTaken = target.takesDamage(damage);
+
+		return damageTaken;
 		}
 	
 	@Override
 	public String toString() {
-			return "Rogue | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
-				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
-				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+		return "Rogue | name: " + getName() + " | hp: " + getHp() + "/" + getHpMax() + " | mana: " + getMana() + "/" + getManaMax()
+				+ " |  attack: " + getAttack() + " | dexterity: " + getDexterity() + " | intelligence: " + getIntelligence() + " | defense: " + getDefense() + " | speed: " + getSpeed() + " | level: " + getLevel()
+				+ " | experience: " + getExperience() + "/" + getExperienceToNextLevel() + "|";
 	}
 
 	

@@ -1,4 +1,3 @@
-DUNGEON_FLOOR;2
-Paladin;Pala;26;34;10;10;9;10;2;2;0;200
-Mage;Fire;22;22;26;26;5;7;6;2;0;200
-Cleric;CUra;21;24;10;18;4;5;4;2;0;200
+DUNGEON_FLOOR;1
+Archer;asds;24;24;6;6;6;4;6;1;0;150
+Archer;;24;24;6;6;6;4;6;1;0;150

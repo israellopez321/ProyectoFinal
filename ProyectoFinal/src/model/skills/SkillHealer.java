@@ -53,15 +53,16 @@ public class SkillHealer extends Skill {
 	
 	
 	@Override
-	public void useSkill(Character user , Combatant target) {
+	public boolean useSkill(Character user , Combatant target) {
 		if (user.getMana() < manaCost) {
 			System.out.println("Not enough mana to use " + name);
-			return;  
+			return false;
 		}
-		
+
 		user.setMana(user.getMana() - manaCost);
 		int healAmount = calculateHeal(user);
 		target.takesHealing(healAmount);
+		return true;
 	}
 
 }

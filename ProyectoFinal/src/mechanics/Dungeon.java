@@ -27,21 +27,24 @@ public class Dungeon {
 			enemies.add(new Slime("Slime3", 1));
 			
 		}else if (floor == 2) {
-			enemies.add(new Goblin("Goblin", 2));
+			enemies.add(new Goblin("Goblin1", 2));
+			enemies.add(new Goblin("Goblin2", 2));
 			enemies.add(new Slime("Slime1", 2));
-			enemies.add(new Slime("Slime2", 2));
 			
 		} else if (floor == 3) {
 			enemies.add(new Orc("Orc", 2));
+			enemies.add(new Slime("Slime1", 2));
+			enemies.add(new Slime("Slime2", 2));
 		
 		} else if (floor == 4) {
 			enemies.add(new Orc("Orc", 2));
 			enemies.add(new Goblin("Goblin", 3));
+			enemies.add(new Slime("Slime", 3));
 			
 		} else if (floor == 5) {
 			enemies.add(new Orc("Orc", 3));
 			enemies.add(new Goblin("Goblin", 4));
-			enemies.add(new Slime("Slime", 4));
+			enemies.add(new Goblin("Goblin", 4));
 		
 		} else if (floor == 6) {
 			enemies.add(new Orc("Orc1", 4));

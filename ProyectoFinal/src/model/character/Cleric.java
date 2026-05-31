@@ -23,51 +23,49 @@ public class Cleric extends Character {
 	
 	@Override
 	public void levelUp() {
-		level++;
-		experienceToNextLevel += 50;
-		hpMax += 4;
-		hp += 4;
-		manaMax += 4;
-		mana += 4;
-		attack += 1;
-		dexterity += 0;
-		intelligence += 3;
-		defense += 1;
-		speed += 1;
-		
+		setLevel(getLevel() + 1);
+		setExperienceToNextLevel(getExperienceToNextLevel() + 50);
+		setHpMax(getHpMax() + 4);
+		setHp(getHp() + 4);
+		setManaMax(getManaMax() + 4);
+		setMana(getMana() + 4);
+		setAttack(getAttack() + 1);
+		setDexterity(getDexterity() + 0);
+		setIntelligence(getIntelligence() + 3);
+		setDefense(getDefense() + 1);
+		setSpeed(getSpeed() + 1);
+
 		learnSkill();
 	}
 
 	@Override
 	public String toString() {
-			return "Cleric | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
-				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
-				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+			return "Cleric | name: " + getName() + " | hp: " + getHp() + "/" + getHpMax() + " | mana: " + getMana() + "/" + getManaMax()
+				+ " |  attack: " + getAttack() + " | dexterity: " + getDexterity()  + " | intelligence: " + getIntelligence() + " | defense: " + getDefense() + " | speed: " + getSpeed() + " | level: " + getLevel()
+				+ " | experience: " + getExperience() + "/" + getExperienceToNextLevel() + "|";
 	}
 
 	@Override
 	public void learnSkill() {
-		
-			    if (level >= 1 && !hasSkill("divine_heal")) {
-	        skills.add(SkillRegistry.get("divine_heal"));
-	        System.out.println(name + " has learned " + SkillRegistry.get("divine_heal").getName() + "!");
-	    }
-	    
-	    if (level >= 4 && !hasSkill("holy_light")) {
-	        skills.add(SkillRegistry.get("holy_light"));
-	        System.out.println(name + " has learned " + SkillRegistry.get("holy_light").getName() + "!");
-	    }
+		if (getLevel() >= 1 && !hasSkill("divine_heal")) {
+			getSkills().add(SkillRegistry.get("divine_heal"));
+			System.out.println(getName() + " has learned " + SkillRegistry.get("divine_heal").getName() + "!");
+		}
+
+		if (getLevel() >= 4 && !hasSkill("holy_light")) {
+			getSkills().add(SkillRegistry.get("holy_light"));
+			System.out.println(getName() + " has learned " + SkillRegistry.get("holy_light").getName() + "!");
+		}
 		
 	}
 	
 	@Override
 	public int attack(Combatant target) {
-			
-			int damage = attack + (Weapon != null ? Weapon.getAttackAmount() : 0);
-			
-			int damageTaken = target.takesDamage(damage);
-			
-			return damageTaken;
+		int damage = getAttack() + (getWeapon() != null ? getWeapon().getAttackAmount() : 0);
+
+		int damageTaken = target.takesDamage(damage);
+
+		return damageTaken;
 		}
 	
 }

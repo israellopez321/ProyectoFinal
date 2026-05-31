@@ -15,6 +15,7 @@ import model.items.DamageItem;
 import model.items.HealItem;
 import model.items.Item;
 import mechanics.ItemRegistry;
+import exceptions.InsufficientStockException;
 import model.skills.Skill;
 
 /**
@@ -96,36 +97,50 @@ public class CombatMenu {
 	 * @param actor
 	 */
     private void handleAllyTurn(Character actor) {
-        System.out.println("Turn: " + actor.getName() + " | HP: " + actor.getHp() + " | Mana: " + actor.getMana());
-        System.out.println("Choose an action:");
-        System.out.println("1) Attack");
-        System.out.println("2) Use Skill");
-        System.out.println("3) Defend");
-        System.out.println("4) Use Item");
+        boolean actionConsumed = false;
 
-        int choice = readIntInRange(1, 4);
+        while (!actionConsumed) {
+            System.out.println("Turn: " + actor.getName() + " | HP: " + actor.getHp() + " | Mana: " + actor.getMana());
+            System.out.println("Choose an action:");
+            System.out.println("1) Attack");
+            System.out.println("2) Use Skill");
+            System.out.println("3) Defend");
+            System.out.println("4) Use Item");
 
-        switch (choice) {
-            case 1:
-                Enemy targetA = chooseEnemyTarget();
-                if (targetA != null) {
-                    int dmg = actor.attack(targetA);
-                    System.out.println(actor.getName() + " attacks " + targetA.getName() + " for " + dmg + " damage.");
+            int choice = readIntInRange(1, 4);
+
+            switch (choice) {
+                case 1 -> {
+                    Enemy targetA = chooseEnemyTarget();
+                    if (targetA != null) {
+                        int dmg = actor.attack(targetA);
+                        System.out.println(actor.getName() + " attacks " + targetA.getName() + " for " + dmg + " damage.");
+                        actionConsumed = true;
+                    } else {
+                        System.out.println("No valid enemy target. Choose another action.");
+                    }
                 }
-                break;
-            case 2:
-                useSkillFlow(actor);
-                break;
-            case 3:
-                actor.defend();
-                System.out.println(actor.getName() + " is defending.");
-                break;
-            case 4:
-                useItemFlow(actor);
-                break;
-            default:
-                System.out.println("Invalid option.");
+                case 2 -> {
+                    boolean used = useSkillFlow(actor);
+                    if (used) actionConsumed = true;
+                    else System.out.println("Choose another action.");
+                }
+                case 3 -> {
+                    actor.defend();
+                    System.out.println(actor.getName() + " is defending.");
+                    actionConsumed = true;
+                }
+                case 4 -> {
+                    boolean usedItem = useItemFlow(actor);
+                    if (usedItem) actionConsumed = true;
+                    else System.out.println("Choose another action.");
+                }
+                default -> System.out.println("Invalid option.");
+            }
+            
         }
+        waitSeconds(2);
+        
     }
 
     /**
@@ -136,11 +151,11 @@ public class CombatMenu {
      * displays the result.
      * @param actor
      */
-    private void useSkillFlow(Character actor) {
+    private boolean useSkillFlow(Character actor) {
         ArrayList<Skill> skills = actor.getSkills();
         if (skills == null || skills.isEmpty()) {
             System.out.println("No skills available.");
-            return;
+            return false;
         }
 
         System.out.println("Choose a skill:");
@@ -160,9 +175,20 @@ public class CombatMenu {
         }
 
         if (target != null) {
-            chosen.useSkill(actor, target);
-            System.out.println(actor.getName() + " used " + chosen.getName() + " on " + (target.getName()));
+            boolean used = chosen.useSkill(actor, target);
+            if (used) {
+                System.out.println(actor.getName() + " used " + chosen.getName() + " on " + (target.getName()));
+                return true;
+            } else {
+                // skill failed (e.g., not enough mana) -> consume turn and proceed
+                System.out.println(actor.getName() + " failed to use " + chosen.getName() + " and the turn is consumed.");
+                return true;
+            }
         }
+        
+        
+        // no valid target -> don't consume turn
+        return false;
     }
 
     /**
@@ -292,7 +318,7 @@ public class CombatMenu {
      * on the chosen target and removes one quantity of the item from the inventory.
      * @param actor
      */
-    private void useItemFlow(Character actor) {
+    private boolean useItemFlow(Character actor) {
         // Filter inventory for consumable items (HealItem and DamageItem)
         ArrayList<InventorySlot> consumableSlots = new ArrayList<>();
         for (InventorySlot slot : inventory.getItems()) {
@@ -303,7 +329,7 @@ public class CombatMenu {
 
         if (consumableSlots.isEmpty()) {
             System.out.println("No consumable items in inventory.");
-            return;
+            return false;
         }
 
         System.out.println("Choose an item:");
@@ -327,12 +353,18 @@ public class CombatMenu {
 
         if (target == null) {
             System.out.println("No valid target.");
-            return;
+            return false;
         }
 
         item.use(actor, target);
         System.out.println(actor.getName() + " used " + item.getName() + " on " + target.getName());
-        inventory.remove(item);
+        try {
+            inventory.remove(item);
+        } catch (InsufficientStockException e) {
+            System.out.println("Could not remove item from inventory: " + e.getMessage());
+        }
+
+        return true;
     }
     
     /**

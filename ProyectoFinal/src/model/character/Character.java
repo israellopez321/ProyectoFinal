@@ -18,23 +18,23 @@ import model.skills.Skill;
  */
 public abstract class Character implements Combatant {
 	
-	protected String name;
-	protected int hp;
-	protected int hpMax;
-	protected int mana;
-	protected int manaMax;
-	protected int attack;
-	protected int dexterity;
-	protected int intelligence;
-	protected int defense;
-	protected int speed;
-	public int level;
-	protected int experience;
-	protected int experienceToNextLevel;
-	protected boolean isDefending = false;
-	protected ArrayList<Skill> skills = new ArrayList<>();
-	protected Weapon Weapon;
-	protected Armor Armor;
+	private String name;
+	private int hp;
+	private int hpMax;
+	private int mana;
+	private int manaMax;
+	private int attack;
+	private int dexterity;
+	private int intelligence;
+	private int defense;
+	private int speed;
+	private int level;
+	private int experience;
+	private int experienceToNextLevel;
+	private boolean isDefending = false;
+	private ArrayList<Skill> skills = new ArrayList<>();
+	private Weapon Weapon;
+	private Armor Armor;
 
 	
 	/**
@@ -118,9 +118,17 @@ public abstract class Character implements Combatant {
 	public int getDexterity() {
 		return dexterity;
 	}
+    
+	public void setDexterity(int dexterity) {
+		this.dexterity = dexterity;
+	}
 	
 	public int getIntelligence() {
 		return intelligence;
+	}
+    
+	public void setIntelligence(int intelligence) {
+		this.intelligence = intelligence;
 	}
 	
 	@Override

@@ -16,14 +16,14 @@ public class Goblin extends Enemy implements Combatant {
 	 * @param level The level of the goblin, which affects its attributes and rewards.
 	 */
 	public Goblin(String name, int level) {
-		super(name, 20 + (level * 4), 4 + (level * 1), 5 + (level * 2), 2 + level, 7 + (level * 2), 5 + level, 6 + (level * 2));
+		super(name, 20 + (level * 4), 6 + (level * 1), 9 + (level * 2), 2 + level, 7 + (level * 2), 5 + level, 6 + (level * 2));
 	}
 	
 	@Override
 	public int useSkill(Combatant target) {
 		// Goblin's skill: Quick Slash 
-		if (mana >= 5) {
-			mana -= 5;
+		if (mana >= 2) {
+			mana -= 2;
 			
 			int damage = Math.max(0, (int)(attack * 1.5)); // Temporary boost for the next attack
 			int damageTaken = target.takesDamage(damage); 

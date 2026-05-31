@@ -14,14 +14,14 @@ public class Slime extends Enemy{
 	 * @param level The level of the slime, which affects its stats.
 	 */
 	public Slime(String name, int level) {
-		super(name, 28 + (level * 6), 2 , 3 + level, 6 + (level * 2) , 2 , 3 + level, 5 + level);
+		super(name, 28 + (level * 6), 6 , 6 + level, 6 + (level * 2) , 2 , 3 + level, 5 + level);
 	}
 
 	@Override
 	public int useSkill(Combatant target) {
 		// Slime's skill: Sticky Goo 
-		if (mana >= 3) {
-			mana -= 3;
+		if (mana >= 1) {
+			mana -= 1;
 			
 			int damage = Math.max(0, attack); // No boost, just a regular attack
 			int damageTaken = target.takesDamage(damage); 

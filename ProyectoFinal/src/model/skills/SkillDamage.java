@@ -66,16 +66,16 @@ public class SkillDamage extends Skill {
 	}
 	
 	@Override
-	public void useSkill(Character user, Combatant target) {
-		
+	public boolean useSkill(Character user, Combatant target) {
 		if (user.getMana() < manaCost) {
 			System.out.println("Not enough mana to use " + name);
-			return;  
+			return false;
 		}
-		
+
 		user.setMana(user.getMana() - manaCost);
 		int damage = calculateDamage(user);
 		target.takesDamage(damage);
-	} 
+		return true;
+	}
 
 }

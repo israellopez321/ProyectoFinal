@@ -22,51 +22,49 @@ public class Paladin extends Character {
 
 	@Override
 	public void levelUp() {
-		level++;
-		experienceToNextLevel += 50;
-		hpMax += 6;
-		hp += 6;
-		manaMax += 2;
-		mana += 2;
-		attack += 2;
-		dexterity += 3;
-		intelligence += 1;
-		defense += 2;
-		speed += 0;
-		
+		setLevel(getLevel() + 1);
+		setExperienceToNextLevel(getExperienceToNextLevel() + 50);
+		setHpMax(getHpMax() + 6);
+		setHp(getHp() + 6);
+		setManaMax(getManaMax() + 2);
+		setMana(getMana() + 2);
+		setAttack(getAttack() + 2);
+		setDexterity(getDexterity() + 3);
+		setIntelligence(getIntelligence() + 1);
+		setDefense(getDefense() + 2);
+		setSpeed(getSpeed() + 0);
+
 		learnSkill();
 	}
 	
 	@Override
 	public String toString() {
-			return "Paladin | name: " + name + " | hp: " + hp + "/" + hpMax + " | mana: " + mana + "/" + manaMax
-				+ " |  attack: " + attack + " | dexterity: " + dexterity  + " | intelligence: " + intelligence + " | defense: " + defense + " | speed: " + speed + " | level: " + level
-				+ " | experience: " + experience + "/" + experienceToNextLevel + "|";
+			return "Paladin | name: " + getName() + " | hp: " + getHp() + "/" + getHpMax() + " | mana: " + getMana() + "/" + getManaMax()
+				+ " |  attack: " + getAttack() + " | dexterity: " + getDexterity()  + " | intelligence: " + getIntelligence() + " | defense: " + getDefense() + " | speed: " + getSpeed() + " | level: " + getLevel()
+				+ " | experience: " + getExperience() + "/" + getExperienceToNextLevel() + "|";
 	}
 
 	@Override
 	public void learnSkill() {
-		
-		 if (level >= 2 && !hasSkill("smite")) {
-		        skills.add(SkillRegistry.get("smite"));
-		        System.out.println(name + " has learned " + SkillRegistry.get("smite").getName() + "!");
-		    }
-		 
-		 if (level >= 4 && !hasSkill("blessing")) {
-		        skills.add(SkillRegistry.get("blessing"));
-		        System.out.println(name + " has learned " + SkillRegistry.get("blessing").getName() + "!");
-		    }
+		if (getLevel() >= 2 && !hasSkill("smite")) {
+			getSkills().add(SkillRegistry.get("smite"));
+			System.out.println(getName() + " has learned " + SkillRegistry.get("smite").getName() + "!");
+		}
+
+		if (getLevel() >= 4 && !hasSkill("blessing")) {
+			getSkills().add(SkillRegistry.get("blessing"));
+			System.out.println(getName() + " has learned " + SkillRegistry.get("blessing").getName() + "!");
+		}
 		
 	}
 	
 	@Override
 	public int attack(Combatant target) {
-			
-			int damage = attack + (Weapon != null ? Weapon.getAttackAmount() : 0);
-			
-			int damageTaken = target.takesDamage(damage);
-			
-			return damageTaken;
+		int damage = getAttack() + (getWeapon() != null ? getWeapon().getAttackAmount() : 0);
+
+		int damageTaken = target.takesDamage(damage);
+
+		return damageTaken;
 		}
 	
 }
