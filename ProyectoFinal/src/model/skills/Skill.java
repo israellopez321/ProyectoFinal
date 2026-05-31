@@ -3,6 +3,12 @@ package model.skills;
 import model.character.Character;
 import model.interfaces.Combatant;
 
+/**
+ * Abstract class representing a skill that characters can learn and use in combat. 
+ * Each skill has an ID, name, mana cost, minimum level requirement, description, 
+ * and type. The useSkill method must be implemented by subclasses to define 
+ * the specific behavior of the skill when used in combat.
+ */
 public abstract class Skill {
 
 	protected String id;
@@ -12,7 +18,15 @@ public abstract class Skill {
 	protected String description;
 	protected String type;
 	
-	
+	/**
+	 * Constructor for the Skill class.
+	 * @param id Unique identifier for the skill.
+	 * @param name Name of the skill.
+	 * @param type Type of the skill (e.g., "damage", "heal", "buff").
+	 * @param description Description of the skill's effect.
+	 * @param manaCost Mana cost to use the skill.
+	 * @param minLevel Minimum level required to use the skill.
+	 */
 	public Skill(String id, String name, String type,  String description, int manaCost, int minLevel) {
 		this.id = id;
 		this.name = name;
@@ -23,6 +37,7 @@ public abstract class Skill {
 	}
 	
 	//GETTERS
+	
 	public String getId() {
 		return id;
 	}
@@ -46,12 +61,10 @@ public abstract class Skill {
 	public String getType() {
 		return type;
 	}
-	
-	
 
 	/**
-	 * Executes the skill's effect. This method should be overridden by subclasses to define specific behavior for 
-	 * different types of skills (e.g., damage, healing, buffs).
+	 * Executes the skill's effect. This method should be overridden by subclasses 
+	 * to define specific behavior for different types of skills (e.g., damage, healing, buffs).
 	 */
 	public abstract void useSkill(Character user, Combatant target);
 

@@ -45,6 +45,8 @@ public interface Combatant {
 	 */
 	public int takesHealing(int healing);
 	
+	// Getters for combatant attributes
+	
 	int getSpeed();
 	
 	int getHp();

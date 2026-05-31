@@ -1,2 +1,12 @@
-fireball;Fireball;A blazing ball of fire;Damage;2;10;25;0;0;2.5
-heal_light;Light Heal;A gentle healing spell;Heal;5;1;20;1.5
+power_strike;Power Strike;A solid physical strike.;Damage;1;6;20;1.0;0;0
+shield_slam;Shield Slam;Bash the enemy with your shield;Damage;3;8;14;1.0;0;0
+spark;Spark;A small arcane blast.;Damage;1;8;16;0;0;1.0
+fireball;Fireball;A blazing ball of fire;Damage;2;10;22;0;0;2.5
+quick_stab;Quick Stab;A fast precise strike.;Damage;1;5;18;0.0;1.0;0
+poison_dagger;Poison Dagger;A fast strike that deals extra damage;Damage;3;7;18;0.0;1.8;0
+holy_light;Holy Light;A small holy attack.;Damage;1;6;16;0.0;0.8;0.2
+divine_heal;Divine Heal;A stronger healing prayer for allies;Heal;2;8;15;2.0
+smite;Smite;A righteous blow.;Damage;1;7;14;1.0;0;0.2
+blessing;Blessing;Heals an ally with holy power;Heal;3;10;30;1.8
+piercing_shot;Piercing Shot;A focused arrow shot.;Damage;1;5;14;0.0;1.0;0
+rain_of_arrows;Rain of Arrows;A volley of arrows that hits hard;Damage;3;9;22;0.0;1.6;0

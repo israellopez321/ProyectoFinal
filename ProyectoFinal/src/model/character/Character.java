@@ -11,7 +11,8 @@ import model.items.Weapon;
 import model.skills.Skill;
 
 /**
- * Abstract class representing a character in the game. It contains common attributes and methods for all characters.
+ * Abstract class representing a character in the game. It contains common 
+ * attributes and methods for all characters.
  * @author Israel López
  *
  */
@@ -60,7 +61,7 @@ public abstract class Character implements Combatant {
 		this.speed = speed;
 		this.level = 1;
 		this.experience = 0;
-		this.experienceToNextLevel = 100;
+		this.experienceToNextLevel = 100 + level * 50;
 	}
 
 	// Getters and setters for the character attributes
@@ -148,6 +149,22 @@ public abstract class Character implements Combatant {
 		this.level = level;
 	}
 	
+	public int getExperience() {
+		return experience;
+	}
+	
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+	
+	public int getExperienceToNextLevel() {
+		return experienceToNextLevel;
+	}
+	
+	public void setExperienceToNextLevel(int experienceToNextLevel) {
+		this.experienceToNextLevel = experienceToNextLevel;
+	}
+	
 	public ArrayList<Skill> getSkills() {
 		return skills;
 	}
@@ -179,15 +196,6 @@ public abstract class Character implements Combatant {
 	}
 	
 	@Override
-	public int attack(Combatant target) {
-		
-		int damage = attack + (Weapon != null ? Weapon.getAttackAmount() : 0);
-		
-		int damageTaken = target.takesDamage(damage);
-		return damageTaken;
-	}
-	
-	@Override
 	public void defend() {
 		isDefending = true;
 		
@@ -206,11 +214,11 @@ public abstract class Character implements Combatant {
 	@Override
 	public int takesDamage(int damage) {
 		
-		int damageTaken = Math.max(0, damage - defense - (Armor != null ? Armor.getDefenseAmount() : 0));
+		int damageTaken = Math.max(1, damage - defense - (Armor != null ? Armor.getDefenseAmount() : 0));
 		
 		damageTaken = isDefending ? damageTaken / 2 : damageTaken;
 		
-		this.hp = Math.max(0, this.hp - damageTaken);
+		this.hp = Math.max(1, this.hp - damageTaken);
 		
 		isDefending = false;
 		
@@ -237,6 +245,10 @@ public abstract class Character implements Combatant {
 		}
 	}
 	
+	/**
+	 * Method to equip an item by its id. It checks the type of the item and equips it accordingly.
+	 * @param itemId
+	 */
 	public void equipItemById(String itemId) {
 	    Item item = ItemRegistry.get(itemId);
 	    if (item instanceof Weapon) setWeapon((Weapon) item);
@@ -254,6 +266,9 @@ public abstract class Character implements Combatant {
 	 */
 	public abstract void levelUp();
 
+	@Override
+	public abstract int attack(Combatant target);
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(attack, defense, experience, experienceToNextLevel, hp, hpMax, level, mana, manaMax, name,

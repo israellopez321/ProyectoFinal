@@ -2,6 +2,9 @@ package model.inventory;
 
 import model.items.Item;
 
+/**
+ * Class representing a slot in the inventory. It contains an item and its quantity.
+ */
 public class InventorySlot {
 
 	private Item item;

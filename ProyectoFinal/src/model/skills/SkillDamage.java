@@ -3,6 +3,10 @@ package model.skills;
 import model.character.Character;
 import model.interfaces.Combatant;
 
+/**
+ * Class representing a damage-dealing skill. It calculates damage based on 
+ * the skill's base damage and the user's attributes.
+ */
 public class SkillDamage extends Skill {
 
 	private int baseDamage;
@@ -30,6 +34,7 @@ public class SkillDamage extends Skill {
 	}
 
 	//GETTERS
+	
 	public int getDamageAmount() {
 		return baseDamage;
 	}
@@ -71,6 +76,6 @@ public class SkillDamage extends Skill {
 		user.setMana(user.getMana() - manaCost);
 		int damage = calculateDamage(user);
 		target.takesDamage(damage);
-	} // 
+	} 
 
 }

@@ -10,7 +10,6 @@ import model.interfaces.Combatant;
  */ 
 public abstract class Enemy implements Combatant {
 
-
 	    protected String name;  
 	    protected int hp;
 	    protected int hpMax;
@@ -23,7 +22,17 @@ public abstract class Enemy implements Combatant {
 	    protected int manaMax;
 	    protected boolean isDefending;
 	    
-	    
+	    /**
+	     * Constructor for the Enemy class, which initializes the enemy's attributes.
+	     * @param name 
+	     * @param hp
+	     * @param mana
+	     * @param attack
+	     * @param defense
+	     * @param speed
+	     * @param goldReward
+	     * @param expReward
+	     */
 		public Enemy(String name, int hp ,int mana, int attack, int defense, int speed, int goldReward,
 				int expReward) {
 			this.name = name;
@@ -99,26 +108,6 @@ public abstract class Enemy implements Combatant {
 			this.speed = speed;
 		}
 
-
-		public int getGoldReward() {
-			return goldReward;
-		}
-
-
-		public void setGoldReward(int goldReward) {
-			this.goldReward = goldReward;
-		}
-
-
-		public int getExpReward() {
-			return expReward;
-		}
-
-
-		public void setExpReward(int expReward) {
-			this.expReward = expReward;
-		}
-
 		@Override
 		public int hashCode() {
 			return Objects.hash(attack, defense, expReward, goldReward, hp, hpMax, name, speed);
@@ -169,13 +158,19 @@ public abstract class Enemy implements Combatant {
 		@Override
 		public int takesDamage(int damage) {
 			
-			int damageTaken = Math.max(0, damage - defense);
+			int damageTaken = Math.max(1, damage - defense);
 			
 			this.hp = Math.max(0, this.hp - damageTaken);
 			
 			return damageTaken;
 		}
 		
+		/**
+		 * Method to use a skill on a target. The specific implementation will 
+		 * depend on the type of enemy and the skills it has.
+		 * @param target
+		 * @return the amount of damage dealt or healing done by the skill
+		 */
 		public abstract int useSkill(Combatant target);
 		
 }

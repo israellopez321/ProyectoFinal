@@ -10,12 +10,20 @@ import model.skills.Skill;
 import model.skills.SkillDamage;
 import model.skills.SkillHealer;
 
+/**
+ * The SkillRegistry class is responsible for loading skills from a text file and 
+ * storing them in a map for easy retrieval. It provides a method to load skills 
+ * from the file and a getter method to retrieve a skill by its name.
+ */
 public class SkillRegistry {
 
 	private static Map<String, Skill> skillMap = new HashMap<>();
 	
 	final static String ARCHIVE = "src/main/resource/Skills.txt";
 	
+	/**
+	 * Loads skills from a text file and populates the skillMap with Skill objects.
+	 */
 	public static void loadSkills() {
 	    try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVE))) {
 
@@ -58,6 +66,8 @@ public class SkillRegistry {
 	        e.printStackTrace();
 	    }  
 	}
+	
+	//Getter
 	
 	public static Skill get(String name) {
 	    return skillMap.get(name);

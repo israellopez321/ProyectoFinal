@@ -4,10 +4,18 @@ import java.util.ArrayList;
 
 import model.items.Item;
 
+/**
+ * The Inventory class manages a collection of items for a character. 
+ * It allows adding and removing items, as well as retrieving the current inventory. Each item is stored in an InventorySlot, which keeps track of the item and its quantity.
+ */
 public class Inventory {
 
 	private ArrayList<InventorySlot> items = new ArrayList<>(); 
 	
+	/**
+	 * Adds an item to the inventory. If the item already exists in the inventory, it increases the quantity by one. Otherwise, it creates a new inventory slot for the item with a quantity of one.
+	 * @param item The item to be added to the inventory.
+	 */
 	public void add(Item item) {
 	    boolean found = false;
 
@@ -24,7 +32,10 @@ public class Inventory {
 	    }
 	}
 
-	
+	/**
+	 * Removes one quantity of the specified item from the inventory. If the quantity of the item reaches zero, it is removed from the inventory list.
+	 * @param item The item to be removed from the inventory.
+	 */
 	public void remove(Item item) {
 	    InventorySlot slotToRemove = null;
 
@@ -43,6 +54,7 @@ public class Inventory {
 	    }
 	}
 
+	// Getter
 	public ArrayList<InventorySlot> getItems() {
 		return items;
 	}

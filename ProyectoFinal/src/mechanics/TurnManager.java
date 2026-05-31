@@ -6,7 +6,10 @@ import model.interfaces.Combatant;
 import model.character.Character;
 
 /**
- * The TurnManager class manages the turn order of combatants in a turn-based combat system. It keeps track of allies, enemies, and the overall turn order based on their speed. It provides methods to add and remove combatants, determine the next combatant to take a turn, and check if the combat is over.
+ * The TurnManager class manages the turn order of combatants in a turn-based 
+ * combat system. It keeps track of allies, enemies, and the overall turn order 
+ * based on their speed. It provides methods to add and remove combatants, 
+ * determine the next combatant to take a turn, and check if the combat is over.
  */
 public class TurnManager {
 
@@ -127,8 +130,11 @@ public class TurnManager {
 	}
 	
 	/**
-	 * Removes all dead combatants from the turn order and returns the next combatant to take a turn. If the turn order is empty after removing dead combatants, it returns null.
-	 * @return the next combatant to take a turn, or null if the turn order is empty after removing dead combatants.
+	 * Removes all dead combatants from the turn order and returns the next 
+	 * combatant to take a turn. If the turn order is empty after removing dead 
+	 * combatants, it returns null.
+	 * @return the next combatant to take a turn, or null if the turn order is 
+	 * empty after removing dead combatants.
 	 */
 	public Combatant removeDead() {
 		

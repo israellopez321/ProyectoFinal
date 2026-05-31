@@ -2,8 +2,16 @@ package model.enemies;
 
 import model.interfaces.Combatant;
 
+/**
+ * The Orc class represents a specific type of enemy in the game. It extends the Enemy class and provides
+ * specific attributes and behaviors for an Orc.
+ */
 public class Orc extends Enemy{
 
+	/**
+	 * The Orc class represents a specific type of enemy in the game. It extends the Enemy class and provides
+	 * specific attributes and behaviors for an Orc.
+	 */
 	public Orc(String name, int level) {
 		super(name, 40 + (level * 8), 3 + level, 8 + (level * 3), 5 + (level * 2), 3 + level, 10 + (level * 2), 12 + (level * 3));
 	}

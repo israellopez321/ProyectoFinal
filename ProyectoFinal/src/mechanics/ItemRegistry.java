@@ -3,10 +3,13 @@ package mechanics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import model.items.Item;
+import model.items.Weapon;
+import model.items.Armor;
 import model.items.DamageItem;
 import model.items.HealItem;
 
@@ -51,26 +54,34 @@ private static Map<String, Item> itemMap = new HashMap<>();
 	            	
 	            	int damage = Integer.parseInt(data[5]);
 	            	
-	            	itemMap.put(id, new model.items.Weapon(id, name, description, cost, type, damage));
+	            	itemMap.put(id, new Weapon(id, name, description, cost, type, damage));
 	            	
 	            } else if(type.equalsIgnoreCase("Armor")) {
 	            	
 	            	int defense = Integer.parseInt(data[5]);
 	            	
-	            	itemMap.put(id, new model.items.Armor(id, name, description, cost, type, defense));
+	            	itemMap.put(id, new Armor(id, name, description, cost, type, defense));
 	            	
 	            }
 	        }
 	    
 	    } catch (IOException e) {
-	        System.out.println("Error de lectura de archivo: " + e.getMessage());
+	        System.out.println("ERROR: " + e.getMessage());
 	    } catch (Exception e) {
-	        e.printStackTrace();
+	       System.out.println("ERROR: " + e.getMessage());
 	    }  
 	}
 	
 	public static Item get(String name) {
 	    return itemMap.get(name);
+	}
+	
+	/**
+	 */
+	public static Collection<Item> getConsumableItems() {
+	    return itemMap.values().stream()
+	        .filter(item -> item instanceof HealItem || item instanceof DamageItem)
+	        .collect(java.util.stream.Collectors.toList());
 	}
 	
 }
