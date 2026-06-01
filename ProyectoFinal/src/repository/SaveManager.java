@@ -19,7 +19,7 @@ import model.character.Character;
  */
 public class SaveManager {
 
-    private static final String SAVE_FILE = "savegame.txt";
+    private static final String SAVE_FILE = "src/repository/savegame.txt";
 
     /**
 	 * Saves the current game state to a file. It writes the dungeon floor and 
