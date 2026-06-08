@@ -1,0 +1,4 @@
+DUNGEON_FLOOR;2
+Paladin;Paco;21;34;10;10;9;10;2;2;0;200
+Rogue;Polilla;7;27;8;8;7;4;10;2;0;200
+Cleric;Isra;16;24;10;18;4;5;4;2;0;200
